@@ -1,0 +1,46 @@
+{
+  "variables": {
+    "aws_access_key": "{{env `aws_access_key`}}",
+    "aws_secret_key": "{{env `aws_secret_key`}}",
+    "source_ami": "{{env `source_ami`}}",
+    "vpc_id": "{{env `vpc_id`}}",
+    "subnet_id": "{{env `subnet_id`}}"
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "us-east-1",
+    "source_ami": "{{user `source_ami`}}",
+    "vpc_id": "{{user `vpc_id`}}",
+    "subnet_id": "{{user `subnet_id`}}",
+    "associate_public_ip_address": "true",
+    "instance_type": "t2.micro",
+    "ssh_username": "ec2-user",
+    "ami_name": "AZN Base Image with TestApp {{timestamp}}",
+    "tags": {
+        "OS": "Linux",
+        "Release": "AZN",
+        "Role": "python",
+	"Profile": "testapp",
+        "Version": "Latest"
+     }
+  }],
+    "provisioners": [
+			{
+			"type" : "file",
+			"source" : "./files/environment",
+			"destination" : "/tmp/environment"
+		},
+
+        {
+            "type": "shell",
+            "inline":[
+		"sudo apt-get install python-pip -y",
+		"sudo pip install flask",
+		"sudo pip install flask-mysql",
+                "git clone https://github.com/jakehigg/bakery_azn_testapp.git"
+            ]
+        }
+    ]
+}
