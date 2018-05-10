@@ -16,7 +16,7 @@ pipeline {
                 packer build -var "aws_access_key=$aws_access_key" -var "aws_secret_key=$aws_secret_key" -var "source_ami=ami-2eef6151" -var "vpc_id=vpc-87e23cff" -var "subnet_id=subnet-d915cdf6" bakery_azn_testapp/packer/bakery.json
                 '''
 		sh '''
-		cat manifest.json | jq -r .builds[0].artifact_id |  cut -d':' -f2 > ami.txt
+		cat manifest.json | jq -r .builds[0].artifact_id |  cut -d":" -f2 > ami.txt
 		'''
                 }}
                
