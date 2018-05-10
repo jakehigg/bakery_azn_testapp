@@ -5,7 +5,7 @@ pipeline {
         stage('Git Packer Template') { 
             steps { 
                 sh 'rm -rvf bakery_azn_testapp'
-                sh 'git clone https://github.com/jakehigg/bakery__azn_testapp.git' 
+                sh 'git clone https://github.com/jakehigg/bakery_azn_testapp.git' 
             }
         }
         stage('Bake') {
