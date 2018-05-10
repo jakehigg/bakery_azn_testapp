@@ -18,7 +18,7 @@
 
     "WebServerAMI" : {
       "Type" : "String",
-      "Description" : "The AMI to be used for the web servers",
+      "Description" : "The AMI to be used for the web servers"
     },
 
     "ALBSubnets" : {
