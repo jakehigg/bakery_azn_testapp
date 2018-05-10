@@ -33,7 +33,9 @@ pipeline {
 		}}}
         }
 	stage('Deployment Approval') {
+            steps {
 	    input "Deploy Change Set?"
+	}
 	}
 	stage('Deploy to QA') {
             steps {
