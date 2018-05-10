@@ -27,7 +27,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'aws_access_key', variable: 'AWS_ACCESS_KEY_ID')]) {
                 withCredentials([string(credentialsId: 'aws_secret_key', variable: 'AWS_SECRET_ACCESS_KEY')]) {		
 	        script {
-          		amiID = readFile('myfile.txt').trim()
+          		amiID = readFile('ami.txt').trim()
         	}
 		sh '''
 		aws --region us-east-1 cloudformation create-change-set --stack-name "TestApp" --use-previous-template --parameters "ParameterKey=WebServerAMI,ParameterValue=$amiID" --change-set-name change1
