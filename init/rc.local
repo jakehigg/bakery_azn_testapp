@@ -10,5 +10,6 @@
 # bits.
 #
 # By default this script does nothing.
-/usr/bin/python /home/ubuntu/bakery_testapp/app/app.py &
+/usr/bin/python /home/ec2-user/bakery_testapp/app/app.py &
+touch /var/lock/subsys/local
 exit 0

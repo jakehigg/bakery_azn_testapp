@@ -39,7 +39,8 @@
 		"sudo pip install flask",
                 "sudo yum install git -y",
 		"sudo pip install flask-mysql",
-                "git clone https://github.com/jakehigg/bakery_azn_testapp.git"
+                "git clone https://github.com/jakehigg/bakery_azn_testapp.git",
+                "sudo cp /home/ec2-user/bakery_azn_testapp/init/rc.local /etc/rc.local"
             ]
         }
     ]
