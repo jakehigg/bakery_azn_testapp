@@ -28,7 +28,7 @@ pipeline {
           		amiID = readFile('ami.txt').trim()
         	}
 		sh '''
-		aws --region us-east-1 cloudformation create-change-set --stack-name "TestApp" --template-body file://$PWD/bakery_azn_testapp/CFN.json --parameters ParameterKey="WebServerAMI",ParameterValue="$amiID" ParameterKey="KeyName",UsePreviousValue=true ParameterKey="Subnets",UsePreviousValue=true ParameterKey="VpcId",UsePreviousValue=true ParameterKey="ALBSubnets",UsePreviousValue=true" --change-set-name "updatedev"
+		aws --region us-east-1 cloudformation create-change-set --stack-name "TestApp" --template-body file://$PWD/bakery_azn_testapp/CFN.json --parameters ParameterKey="WebServerAMI",ParameterValue="$amiID" ParameterKey="KeyName",UsePreviousValue=true ParameterKey="Subnets",UsePreviousValue=true ParameterKey="VpcId",UsePreviousValue=true ParameterKey="ALBSubnets",UsePreviousValue=true --change-set-name "updatedev"
 		'''
 		}}}
         }
