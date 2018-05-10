@@ -24,10 +24,8 @@ pipeline {
 	    steps {
                 withCredentials([string(credentialsId: 'aws_access_key', variable: 'AWS_ACCESS_KEY_ID')]) {
                 withCredentials([string(credentialsId: 'aws_secret_key', variable: 'AWS_SECRET_ACCESS_KEY')]) {		
-	        script {
-          		amiID = readFile('ami.txt').trim()
-        	}
 		sh '''
+		amiID=$(cat ami.txt)
 		aws --region us-east-1 cloudformation create-change-set --stack-name "TestApp" --template-body file://$PWD/bakery_azn_testapp/CFN.json --parameters ParameterKey="WebServerAMI",ParameterValue="$amiID" ParameterKey="KeyName",UsePreviousValue=true ParameterKey="Subnets",UsePreviousValue=true ParameterKey="VpcId",UsePreviousValue=true ParameterKey="ALBSubnets",UsePreviousValue=true --change-set-name $amiID
 		'''
 		}}}
@@ -41,10 +39,8 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'aws_access_key', variable: 'AWS_ACCESS_KEY_ID')]) {
                 withCredentials([string(credentialsId: 'aws_secret_key', variable: 'AWS_SECRET_ACCESS_KEY')]) {
-                script {
-                        amiID = readFile('ami.txt').trim()
-                }
                 sh '''
+                amiID=$(cat ami.txt)
                 aws --region us-east-1 cloudformation execute-change-set --stack-name "TestApp" --change-set-name $amiID
                 '''
                 }}}
