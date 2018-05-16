@@ -39,7 +39,8 @@
                 "sudo yum install git -y",
 		"sudo yum install httpd -y", 
                 "git clone https://github.com/jakehigg/bakery_azn_testapp.git",
-		"sudo cp -r bakery_azn_testapp/app/* /var/www/html/"
+		"sudo cp -r bakery_azn_testapp/app/* /var/www/html/",
+		"sudo chkconfig httpd on"
             ]
         }
     ],
