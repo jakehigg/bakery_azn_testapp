@@ -45,7 +45,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'aws_access_key', variable: 'AWS_ACCESS_KEY_ID')]) {
                 withCredentials([string(credentialsId: 'aws_secret_key', variable: 'AWS_SECRET_ACCESS_KEY')]) {
                 sh '''
-                export amiID=$(cat ami.txt)
+                export amiID=$(aws --region us-east-1 ssm get-parameter --name "latestapp" | jq -r  .Parameter.Value)
                 aws --region us-east-1 cloudformation execute-change-set --stack-name "TestApp" --change-set-name $amiID
                 '''
                 }}}
