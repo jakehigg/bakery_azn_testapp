@@ -31,7 +31,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'aws_secret_key', variable: 'AWS_SECRET_ACCESS_KEY')]) {		
 		sh '''
 		export amiID=$(aws --region us-east-1 ssm get-parameter --name "latestapp" | jq -r  .Parameter.Value)
-		aws --region us-east-1 cloudformation create-change-set --stack-name "TestApp" --template-body file://$PWD/bakery_azn_testapp/CFN.json --parameters ParameterKey="WebServerAMI",ParameterValue="$amiID" ParameterKey="KeyName",UsePreviousValue=true ParameterKey="Subnets",UsePreviousValue=true ParameterKey="VpcId",UsePreviousValue=true ParameterKey="ALBSubnets",UsePreviousValue=true --change-set-name $amiID
+		aws --region us-east-1 cloudformation create-change-set --stack-name "TestApp2" --template-body file://$PWD/bakery_azn_testapp/CFN.json --parameters ParameterKey="WebServerAMI",ParameterValue="$amiID" ParameterKey="KeyName",UsePreviousValue=true ParameterKey="Subnets",UsePreviousValue=true ParameterKey="VpcId",UsePreviousValue=true ParameterKey="ALBSubnets",UsePreviousValue=true --change-set-name $amiID
 		'''
 		}}}
         }
